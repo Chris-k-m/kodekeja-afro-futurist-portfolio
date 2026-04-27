@@ -5,14 +5,12 @@ const Reveal = ({
   children,
   delay = 0,
   className = "",
-  as: As = "div",
 }: {
   children: React.ReactNode;
   delay?: number;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
 }) => {
-  const ref = useRef<HTMLElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -34,14 +32,13 @@ const Reveal = ({
   }, []);
 
   return (
-    // @ts-expect-error - dynamic tag
-    <As
+    <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
       className={`reveal ${visible ? "in-view" : ""} ${className}`}
     >
       {children}
-    </As>
+    </div>
   );
 };
 
