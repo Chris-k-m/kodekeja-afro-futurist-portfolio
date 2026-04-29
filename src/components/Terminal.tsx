@@ -17,6 +17,8 @@ const lines: Line[] = [
   { output: "ASP.NET | React | MongoDB | MySQL | Python", outputClass: "text-accent" },
   { prompt: "kodekeja@system:~$", command: "mission" },
   { output: "Engineer reliable systems. Solve real problems. Ship at scale.", outputClass: "text-foreground/85" },
+  { prompt: "kodekeja@system:~$", command: "currently_building" },
+  { output: "SMC Trading Bot — Smart Money Concepts algorithmic trading engine.", outputClass: "text-accent" },
 ];
 
 // Flatten into typed segments for sequential typing

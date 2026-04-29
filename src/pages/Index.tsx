@@ -1,4 +1,5 @@
 import Contact from "@/components/Contact";
+import Experience from "@/components/Experience";
 import Features from "@/components/Features";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -16,6 +17,7 @@ const Index = () => {
         <Terminal />
         <Projects />
         <Features />
+        <Experience />
         <TechStack />
         <Contact />
       </main>
