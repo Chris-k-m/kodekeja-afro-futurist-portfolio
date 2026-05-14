@@ -58,8 +58,9 @@ const Hero = () => {
               <span className="text-foreground font-semibold">intelligent</span>{" "}
               digital solutions across{" "}
               <span className="text-primary font-semibold">fintech</span>,{" "}
-              <span className="text-secondary font-semibold">healthtech</span>, and{" "}
-              <span className="text-accent font-semibold">web platforms</span>.
+              <span className="text-secondary font-semibold">healthtech</span>,{" "}
+              <span className="text-accent font-semibold">AI systems</span>, and modern{" "}
+              <span className="text-primary font-semibold">web platforms</span>.
             </p>
 
             <div className="mt-8 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
