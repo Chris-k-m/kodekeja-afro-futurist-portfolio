@@ -20,30 +20,44 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* LEFT — Headline with dev / Kenyan vibe */}
-          <div className="text-left animate-fade-in-up">
-            <div className="inline-flex items-center gap-2 rounded-md glass gradient-border px-3 py-1.5 font-mono text-[11px] uppercase tracking-widest text-secondary">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* LEFT — Afro-futuristic headline */}
+          <div className="text-left animate-fade-in-up lg:-mt-6 relative">
+            {/* Afro-futuristic glyph backdrop */}
+            <svg
+              className="absolute -top-10 -left-6 w-40 h-40 opacity-[0.12] pointer-events-none"
+              viewBox="0 0 100 100"
+              fill="none"
+              aria-hidden
+            >
+              <circle cx="50" cy="50" r="48" stroke="hsl(var(--accent))" strokeWidth="0.4" />
+              <circle cx="50" cy="50" r="32" stroke="hsl(var(--primary))" strokeWidth="0.4" />
+              <path d="M50 2 L50 98 M2 50 L98 50 M15 15 L85 85 M85 15 L15 85" stroke="hsl(var(--secondary))" strokeWidth="0.3" />
+              <path d="M50 18 L62 50 L50 82 L38 50 Z" stroke="hsl(var(--accent))" strokeWidth="0.5" />
+            </svg>
+
+            <div className="relative inline-flex items-center gap-2 rounded-full glass gradient-border px-3 py-1 font-mono text-[10px] uppercase tracking-[0.2em] text-secondary">
               <span className="h-1.5 w-1.5 rounded-full bg-secondary animate-pulse" />
               <span className="text-muted-foreground">$</span>
               <span>./kodekeja --origin=nairobi</span>
             </div>
 
-            <div className="mt-5 flex items-center gap-2">
-              <span className="h-1 w-8 rounded-full bg-foreground/80" />
-              <span className="h-1 w-8 rounded-full bg-destructive" />
-              <span className="h-1 w-8 rounded-full bg-secondary" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground ml-2">
+            <div className="mt-4 flex items-center gap-2">
+              <span className="h-[3px] w-6 rounded-full bg-foreground/80" />
+              <span className="h-[3px] w-6 rounded-full bg-destructive" />
+              <span className="h-[3px] w-6 rounded-full bg-secondary" />
+              <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground ml-2">
                 Made in Kenya · 🇰🇪
               </span>
             </div>
 
-            <h1 className="mt-6 font-display font-bold tracking-tight text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">
-              <span className="block font-mono text-sm sm:text-base text-muted-foreground mb-3">
-                <span className="text-accent">const</span>{" "}
-                <span className="text-primary">mission</span>{" "}
-                <span className="text-muted-foreground">=</span>
-              </span>
+            <div className="mt-5 font-mono text-[11px] text-muted-foreground">
+              <span className="text-accent">const</span>{" "}
+              <span className="text-primary">mission</span>{" "}
+              <span className="text-muted-foreground">=</span>
+            </div>
+
+            <h1 className="mt-2 font-display font-bold tracking-tight text-3xl sm:text-4xl lg:text-5xl leading-[1.1]">
               Building <span className="text-gradient">Smart Systems</span>
               <br />
               for a{" "}
@@ -51,7 +65,7 @@ const Hero = () => {
                 Smarter Future
                 <svg
                   className="absolute -bottom-2 left-0 w-full"
-                  height="10"
+                  height="8"
                   viewBox="0 0 300 10"
                   preserveAspectRatio="none"
                   aria-hidden
@@ -59,7 +73,7 @@ const Hero = () => {
                   <path
                     d="M2 6 Q 75 1, 150 6 T 298 6"
                     stroke="url(#g)"
-                    strokeWidth="2.5"
+                    strokeWidth="2"
                     fill="none"
                     strokeLinecap="round"
                   />
@@ -74,10 +88,18 @@ const Hero = () => {
               </span>
             </h1>
 
-            <p className="mt-6 font-mono text-xs text-muted-foreground">
-              <span className="text-accent">// </span>
-              karibu — welcome to the build floor
-            </p>
+            {/* Afro-futuristic accent row */}
+            <div className="mt-6 flex items-center gap-3">
+              <span className="h-px w-10 bg-gradient-to-r from-transparent via-accent to-transparent" />
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+                <path d="M7 1 L13 7 L7 13 L1 7 Z" stroke="hsl(var(--accent))" strokeWidth="0.8" fill="none" />
+                <circle cx="7" cy="7" r="1.5" fill="hsl(var(--accent))" />
+              </svg>
+              <p className="font-mono text-[11px] text-muted-foreground">
+                <span className="text-accent">// </span>
+                karibu — welcome to the build floor
+              </p>
+            </div>
           </div>
 
           {/* RIGHT — Modern editorial card with African pattern bg */}
