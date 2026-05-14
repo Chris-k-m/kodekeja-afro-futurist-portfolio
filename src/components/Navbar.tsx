@@ -47,24 +47,39 @@ const Navbar = () => {
                 <circle cx="5" cy="35" r="0.9" fill="hsl(var(--accent))" />
                 <circle cx="35" cy="35" r="0.9" fill="hsl(var(--accent))" />
                 {/* circuit lines */}
-                <path d="M5 20 H10 M30 20 H35 M20 5 V9 M20 31 V35" stroke="hsl(var(--primary))" strokeWidth="0.6" />
-                <path d="M2 12 H6 V8 M38 12 H34 V8 M2 28 H6 V32 M38 28 H34 V32" stroke="hsl(var(--secondary))" strokeWidth="0.5" fill="none" />
-                {/* afro diamond + tribal marks */}
-                <path d="M20 13 L25 20 L20 27 L15 20 Z" stroke="hsl(var(--accent))" strokeWidth="0.5" fill="hsl(var(--accent) / 0.08)" />
-                <path d="M11 14 L14 14 M11 26 L14 26 M26 14 L29 14 M26 26 L29 26" stroke="hsl(var(--accent))" strokeWidth="0.5" />
+                <path d="M2 20 H6 M34 20 H38 M20 2 V6 M20 34 V38" stroke="hsl(var(--primary))" strokeWidth="0.6" />
+                <path d="M2 12 H5 V8 M38 12 H35 V8 M2 28 H5 V32 M38 28 H35 V32" stroke="hsl(var(--secondary))" strokeWidth="0.5" fill="none" />
+                {/* tribal accent marks top/bottom */}
+                <path d="M16 6 L20 4 L24 6 M16 34 L20 36 L24 34" stroke="hsl(var(--accent))" strokeWidth="0.4" />
 
-                {/* stylized K — mechanical strokes */}
-                <g stroke="url(#kgrad)" strokeWidth="2.4" strokeLinecap="square" fill="none">
-                  <path d="M14 11 V29" />
-                  <path d="M14 20 L25 11" />
-                  <path d="M14 20 L25 29" />
+                {/* LEFT K — mechanical */}
+                <g stroke="url(#kgrad)" strokeWidth="2" strokeLinecap="square" fill="none">
+                  <path d="M11 11 V29" />
+                  <path d="M11 20 L17 11" />
+                  <path d="M11 20 L17 29" />
                 </g>
+                {/* RIGHT K — mirrored */}
+                <g stroke="url(#kgrad2)" strokeWidth="2" strokeLinecap="square" fill="none">
+                  <path d="M29 11 V29" />
+                  <path d="M29 20 L23 11" />
+                  <path d="M29 20 L23 29" />
+                </g>
+
+                {/* central afro diamond — shared joint */}
+                <path d="M20 15 L22 20 L20 25 L18 20 Z" stroke="hsl(var(--accent))" strokeWidth="0.5" fill="hsl(var(--accent) / 0.15)" />
+                <circle cx="20" cy="20" r="0.7" fill="hsl(var(--accent))" />
+
                 {/* joint nodes */}
-                <circle cx="14" cy="20" r="1.4" fill="hsl(var(--accent))" />
-                <circle cx="14" cy="11" r="0.9" fill="hsl(var(--secondary))" />
-                <circle cx="14" cy="29" r="0.9" fill="hsl(var(--secondary))" />
-                <circle cx="25" cy="11" r="0.9" fill="hsl(var(--primary))" />
-                <circle cx="25" cy="29" r="0.9" fill="hsl(var(--primary))" />
+                <circle cx="11" cy="20" r="1.2" fill="hsl(var(--accent))" />
+                <circle cx="29" cy="20" r="1.2" fill="hsl(var(--accent))" />
+                <circle cx="11" cy="11" r="0.8" fill="hsl(var(--secondary))" />
+                <circle cx="11" cy="29" r="0.8" fill="hsl(var(--secondary))" />
+                <circle cx="29" cy="11" r="0.8" fill="hsl(var(--primary))" />
+                <circle cx="29" cy="29" r="0.8" fill="hsl(var(--primary))" />
+                <circle cx="17" cy="11" r="0.6" fill="hsl(var(--primary))" />
+                <circle cx="17" cy="29" r="0.6" fill="hsl(var(--primary))" />
+                <circle cx="23" cy="11" r="0.6" fill="hsl(var(--secondary))" />
+                <circle cx="23" cy="29" r="0.6" fill="hsl(var(--secondary))" />
 
                 <defs>
                   <linearGradient id="kgrad" x1="0" y1="0" x2="1" y2="1">
