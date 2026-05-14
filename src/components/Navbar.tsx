@@ -87,6 +87,11 @@ const Navbar = () => {
                     <stop offset="55%" stopColor="hsl(var(--accent))" />
                     <stop offset="100%" stopColor="hsl(var(--secondary))" />
                   </linearGradient>
+                  <linearGradient id="kgrad2" x1="1" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="hsl(var(--secondary))" />
+                    <stop offset="55%" stopColor="hsl(var(--accent))" />
+                    <stop offset="100%" stopColor="hsl(var(--primary))" />
+                  </linearGradient>
                 </defs>
               </svg>
 
