@@ -4,12 +4,12 @@ import HeroBackground from "./HeroBackground";
 import RubiksCube from "./RubiksCube";
 
 const SOLUTIONS = [
-  { label: "Fintech", desc: "Payments, lending & wallets", color: "text-primary", glow: "hsl(var(--primary)/0.6)" },
-  { label: "Healthtech", desc: "Records, telehealth & ops", color: "text-secondary", glow: "hsl(var(--secondary)/0.6)" },
-  { label: "Web Platforms", desc: "Scalable digital products", color: "text-accent", glow: "hsl(var(--accent)/0.6)" },
-  { label: "AI Systems", desc: "Smart agents & automation", color: "text-primary", glow: "hsl(var(--primary)/0.6)" },
-  { label: "Trading Bots", desc: "SMC algorithmic engines", color: "text-secondary", glow: "hsl(var(--secondary)/0.6)" },
-  { label: "Biometrics", desc: "Identity & access systems", color: "text-accent", glow: "hsl(var(--accent)/0.6)" },
+  { label: "Fintech", desc: "Payments, lending & wallets", color: "text-primary", glow: "hsl(198 100% 65% / 0.7)" },
+  { label: "HealthTech", desc: "Records, telehealth & ops", color: "text-secondary", glow: "hsl(152 75% 60% / 0.7)" },
+  { label: "AI Systems", desc: "Smart agents & ML pipelines", color: "text-accent", glow: "hsl(290 90% 70% / 0.7)" },
+  { label: "Automation", desc: "Workflow & ops engines", color: "text-primary", glow: "hsl(198 100% 65% / 0.7)" },
+  { label: "Smart Platforms", desc: "Adaptive digital products", color: "text-secondary", glow: "hsl(42 90% 65% / 0.7)" },
+  { label: "Web Infrastructure", desc: "Scalable cloud-native systems", color: "text-accent", glow: "hsl(290 90% 70% / 0.7)" },
 ];
 
 const Hero = () => {
