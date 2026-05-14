@@ -33,13 +33,56 @@ const Navbar = () => {
             scrolled ? "glass shadow-elevate" : ""
           }`}
         >
-          <a href="#top" className="flex items-center gap-2 group">
-            <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-primary glow-primary">
-              <span className="font-display font-bold text-primary-foreground text-lg">K</span>
-              <span className="absolute inset-0 rounded-lg ring-1 ring-primary/40 group-hover:ring-primary/80 transition" />
+          <a href="#top" className="flex items-center gap-2.5 group">
+            <span className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-[hsl(var(--background))] overflow-hidden">
+              {/* mechatronic frame */}
+              <span className="absolute inset-0 rounded-[10px] bg-gradient-primary opacity-90" />
+              <span className="absolute inset-[2px] rounded-[8px] bg-[hsl(var(--background))]" />
+
+              {/* circuit traces */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 40 40" fill="none" aria-hidden>
+                {/* corner bolts */}
+                <circle cx="5" cy="5" r="0.9" fill="hsl(var(--accent))" />
+                <circle cx="35" cy="5" r="0.9" fill="hsl(var(--accent))" />
+                <circle cx="5" cy="35" r="0.9" fill="hsl(var(--accent))" />
+                <circle cx="35" cy="35" r="0.9" fill="hsl(var(--accent))" />
+                {/* circuit lines */}
+                <path d="M5 20 H10 M30 20 H35 M20 5 V9 M20 31 V35" stroke="hsl(var(--primary))" strokeWidth="0.6" />
+                <path d="M2 12 H6 V8 M38 12 H34 V8 M2 28 H6 V32 M38 28 H34 V32" stroke="hsl(var(--secondary))" strokeWidth="0.5" fill="none" />
+                {/* afro diamond + tribal marks */}
+                <path d="M20 13 L25 20 L20 27 L15 20 Z" stroke="hsl(var(--accent))" strokeWidth="0.5" fill="hsl(var(--accent) / 0.08)" />
+                <path d="M11 14 L14 14 M11 26 L14 26 M26 14 L29 14 M26 26 L29 26" stroke="hsl(var(--accent))" strokeWidth="0.5" />
+
+                {/* stylized K — mechanical strokes */}
+                <g stroke="url(#kgrad)" strokeWidth="2.4" strokeLinecap="square" fill="none">
+                  <path d="M14 11 V29" />
+                  <path d="M14 20 L25 11" />
+                  <path d="M14 20 L25 29" />
+                </g>
+                {/* joint nodes */}
+                <circle cx="14" cy="20" r="1.4" fill="hsl(var(--accent))" />
+                <circle cx="14" cy="11" r="0.9" fill="hsl(var(--secondary))" />
+                <circle cx="14" cy="29" r="0.9" fill="hsl(var(--secondary))" />
+                <circle cx="25" cy="11" r="0.9" fill="hsl(var(--primary))" />
+                <circle cx="25" cy="29" r="0.9" fill="hsl(var(--primary))" />
+
+                <defs>
+                  <linearGradient id="kgrad" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stopColor="hsl(var(--primary))" />
+                    <stop offset="55%" stopColor="hsl(var(--accent))" />
+                    <stop offset="100%" stopColor="hsl(var(--secondary))" />
+                  </linearGradient>
+                </defs>
+              </svg>
+
+              <span className="absolute inset-0 rounded-[10px] ring-1 ring-primary/30 group-hover:ring-accent/70 transition" />
+              <span className="absolute -inset-1 rounded-[12px] bg-primary/20 blur-md opacity-0 group-hover:opacity-100 transition" />
             </span>
-            <span className="font-display font-semibold tracking-tight text-lg">
+            <span className="font-display font-semibold tracking-tight text-lg leading-none">
               Kode<span className="text-gradient-primary">Keja</span>
+              <span className="block font-mono text-[8px] uppercase tracking-[0.35em] text-muted-foreground mt-1">
+                ⏣ nairobi.engine
+              </span>
             </span>
           </a>
 
