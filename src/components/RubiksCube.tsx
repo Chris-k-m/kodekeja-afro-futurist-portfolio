@@ -1,5 +1,5 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment, Float } from "@react-three/drei";
+import { Environment, Float, ContactShadows } from "@react-three/drei";
 import { useRef, useMemo, useEffect } from "react";
 import * as THREE from "three";
 
@@ -13,92 +13,123 @@ const NEON = {
   white: "#f8fafc",
 };
 
-const FACE_PALETTE = [NEON.blue, NEON.teal, NEON.gold, NEON.magenta, NEON.purple, NEON.white];
+/* 6 modules arranged as a 2x3 cluster — connect into a slab when assembled */
+const MODULE_SIZE = 1.25;
+const GAP = 0.04;
+const STEP = MODULE_SIZE + GAP;
 
-/* ---------- Single Cubie ---------- */
-type CubiePos = [number, number, number];
+type ModuleDef = {
+  basePos: [number, number, number];
+  color: string;
+  accent: string;
+};
 
-const Cubie = ({
-  basePos,
+const MODULES: ModuleDef[] = [
+  { basePos: [-STEP, STEP / 2, 0], color: NEON.blue, accent: NEON.white },
+  { basePos: [0, STEP / 2, 0], color: NEON.teal, accent: NEON.white },
+  { basePos: [STEP, STEP / 2, 0], color: NEON.gold, accent: NEON.white },
+  { basePos: [-STEP, -STEP / 2, 0], color: NEON.magenta, accent: NEON.white },
+  { basePos: [0, -STEP / 2, 0], color: NEON.purple, accent: NEON.white },
+  { basePos: [STEP, -STEP / 2, 0], color: NEON.white, accent: NEON.blue },
+];
+
+/* ---------- Single Module Cube ---------- */
+const ModuleCube = ({
+  def,
   index,
   pulseRef,
   detachRef,
 }: {
-  basePos: CubiePos;
+  def: ModuleDef;
   index: number;
   pulseRef: React.MutableRefObject<number>;
   detachRef: React.MutableRefObject<number>;
 }) => {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const groupRef = useRef<THREE.Group>(null);
   const matRef = useRef<THREE.MeshPhysicalMaterial>(null);
+  const rimRef = useRef<THREE.LineBasicMaterial>(null);
 
-  // Per-cubie randomness
-  const seed = useMemo(() => ({
-    color: FACE_PALETTE[index % FACE_PALETTE.length],
-    phase: Math.random() * Math.PI * 2,
-    speed: 0.6 + Math.random() * 0.8,
-    drift: 0.35 + Math.random() * 0.45,
-    rotAxis: new THREE.Vector3(
-      Math.random() - 0.5,
-      Math.random() - 0.5,
-      Math.random() - 0.5,
-    ).normalize(),
-    // detach offset direction = away from center
-    outDir: new THREE.Vector3(...basePos).normalize().lengthSq() > 0
-      ? new THREE.Vector3(...basePos).normalize()
-      : new THREE.Vector3(0, 1, 0),
-  }), [basePos, index]);
+  const seed = useMemo(() => {
+    const out = new THREE.Vector3(...def.basePos);
+    if (out.lengthSq() < 0.001) out.set(0, 1, 0);
+    out.normalize();
+    // push z slightly so things separate in depth too
+    out.z += (Math.random() - 0.5) * 0.6;
+    out.normalize();
+    return {
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.45 + Math.random() * 0.5,
+      drift: 0.55 + Math.random() * 0.55,
+      spinAxis: new THREE.Vector3(
+        Math.random() - 0.5,
+        Math.random() - 0.5,
+        Math.random() - 0.5,
+      ).normalize(),
+      spinSpeed: 0.25 + Math.random() * 0.45,
+      outDir: out,
+      bobAmp: 0.05 + Math.random() * 0.08,
+    };
+  }, [def, index]);
 
   useFrame((state) => {
-    const mesh = meshRef.current;
-    const mat = matRef.current;
-    if (!mesh) return;
+    const g = groupRef.current;
+    if (!g) return;
     const t = state.clock.elapsedTime;
+    const detach = detachRef.current; // 0 connected, 1 fully separated
+    const pulse = pulseRef.current;
 
-    // Detach amount: 0..1 — drives outward float + independent rotation
-    const detach = detachRef.current;
-    // Per-cubie wobble so each one breathes individually
-    const wobble = (Math.sin(t * seed.speed + seed.phase) * 0.5 + 0.5) * detach;
+    // Smooth easing for separation
+    const ease = detach * detach * (3 - 2 * detach);
+    const breathe = (Math.sin(t * seed.speed + seed.phase) * 0.5 + 0.5);
+    const offsetMag = ease * seed.drift + breathe * seed.bobAmp * (0.4 + ease);
 
-    const offsetMag = wobble * seed.drift;
-    mesh.position.set(
-      basePos[0] + seed.outDir.x * offsetMag,
-      basePos[1] + seed.outDir.y * offsetMag,
-      basePos[2] + seed.outDir.z * offsetMag,
+    g.position.set(
+      def.basePos[0] + seed.outDir.x * offsetMag,
+      def.basePos[1] + seed.outDir.y * offsetMag + Math.sin(t * 0.6 + seed.phase) * 0.04,
+      def.basePos[2] + seed.outDir.z * offsetMag,
     );
 
-    // Independent rotation while detached
-    const rotAmt = wobble * 0.8;
-    mesh.rotation.x = seed.rotAxis.x * rotAmt + Math.sin(t * 0.4 + seed.phase) * 0.05;
-    mesh.rotation.y = seed.rotAxis.y * rotAmt + Math.cos(t * 0.4 + seed.phase) * 0.05;
-    mesh.rotation.z = seed.rotAxis.z * rotAmt;
+    // Independent intelligent rotation while detached, calm when assembled
+    const spinAmt = ease * seed.spinSpeed * t;
+    g.rotation.x = seed.spinAxis.x * spinAmt + Math.sin(t * 0.3 + seed.phase) * 0.04;
+    g.rotation.y = seed.spinAxis.y * spinAmt + Math.cos(t * 0.3 + seed.phase) * 0.04;
+    g.rotation.z = seed.spinAxis.z * spinAmt * 0.6;
 
-    // Emissive pulse
-    if (mat) {
-      mat.emissiveIntensity = 0.25 + pulseRef.current * 1.4;
+    if (matRef.current) {
+      matRef.current.emissiveIntensity = 0.35 + pulse * 1.6;
+    }
+    if (rimRef.current) {
+      rimRef.current.opacity = 0.4 + pulse * 0.5 + ease * 0.2;
     }
   });
 
   return (
-    <mesh ref={meshRef} position={basePos} castShadow receiveShadow>
-      <boxGeometry args={[0.88, 0.88, 0.88]} />
-      <meshPhysicalMaterial
-        ref={matRef}
-        color={seed.color}
-        metalness={0.85}
-        roughness={0.18}
-        clearcoat={1}
-        clearcoatRoughness={0.15}
-        reflectivity={0.6}
-        emissive={new THREE.Color(seed.color)}
-        emissiveIntensity={0.25}
-      />
-      {/* Edge rim light */}
+    <group ref={groupRef} position={def.basePos}>
+      <mesh castShadow receiveShadow>
+        <boxGeometry args={[MODULE_SIZE, MODULE_SIZE, MODULE_SIZE]} />
+        <meshPhysicalMaterial
+          ref={matRef}
+          color={def.color}
+          metalness={0.92}
+          roughness={0.14}
+          clearcoat={1}
+          clearcoatRoughness={0.08}
+          reflectivity={0.85}
+          emissive={new THREE.Color(def.color)}
+          emissiveIntensity={0.35}
+          envMapIntensity={1.2}
+        />
+      </mesh>
       <lineSegments>
-        <edgesGeometry args={[new THREE.BoxGeometry(0.9, 0.9, 0.9)]} />
-        <lineBasicMaterial color={seed.color} transparent opacity={0.55} />
+        <edgesGeometry args={[new THREE.BoxGeometry(MODULE_SIZE * 1.005, MODULE_SIZE * 1.005, MODULE_SIZE * 1.005)]} />
+        <lineBasicMaterial ref={rimRef} color={def.accent} transparent opacity={0.5} />
       </lineSegments>
-    </mesh>
+      {/* inner glow core */}
+      <mesh>
+        <boxGeometry args={[MODULE_SIZE * 0.45, MODULE_SIZE * 0.45, MODULE_SIZE * 0.45]} />
+        <meshBasicMaterial color={def.color} transparent opacity={0.18} />
+      </mesh>
+    </group>
   );
 };
 
@@ -114,53 +145,44 @@ const CubeAssembly = ({
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const t0 = useRef(0);
-  const targetRot = useRef({ x: 0, y: 0 });
-
-  const cubies: CubiePos[] = useMemo(() => {
-    const arr: CubiePos[] = [];
-    for (let x = -1; x <= 1; x++)
-      for (let y = -1; y <= 1; y++)
-        for (let z = -1; z <= 1; z++) arr.push([x, y, z]);
-    return arr;
-  }, []);
+  const targetX = useRef(0);
+  const targetY = useRef(0);
 
   useFrame((_, delta) => {
     if (!groupRef.current) return;
     t0.current += delta;
+    const t = t0.current;
 
-    // Continuous slow rotation
-    groupRef.current.rotation.y += delta * 0.35;
+    // Continuous slow cinematic rotation
+    groupRef.current.rotation.y += delta * 0.28;
 
-    // Parallax from mouse
-    targetRot.current.x = mouseRef.current.y * 0.35;
-    targetRot.current.y += (mouseRef.current.x * 0.4 - (targetRot.current.y - 0)) * 0.05;
-    groupRef.current.rotation.x +=
-      (Math.sin(t0.current * 0.3) * 0.18 + targetRot.current.x - groupRef.current.rotation.x) *
-      0.04;
+    // Mouse parallax
+    targetX.current += (mouseRef.current.y * 0.3 - targetX.current) * 0.06;
+    targetY.current += (mouseRef.current.x * 0.4 - targetY.current) * 0.06;
+    groupRef.current.rotation.x =
+      Math.sin(t * 0.25) * 0.12 + targetX.current;
 
-    // Pulse cycle ~3.2s, bell shape
-    const cycle = 3.2;
-    const phase = (t0.current % cycle) / cycle;
-    const pulse = Math.exp(-Math.pow((phase - 0.5) * 4, 2));
+    // Pulse cycle ~3.6s, smooth bell shape
+    const cycle = 3.6;
+    const phase = (t % cycle) / cycle;
+    const pulse = Math.exp(-Math.pow((phase - 0.5) * 4.2, 2));
     pulseRef.current = pulse;
 
-    // Detach cycle: cubies float out between pulses, return at peak
-    // Detach high during phase 0..0.35 and 0.65..1, low at peak
-    const detach = Math.min(
-      1,
-      Math.max(0, 1 - Math.exp(-Math.pow((phase - 0.5) * 3.2, 2)) * 1.05),
-    );
+    // Detach: separate between pulses, reconnect AT pulse peak
+    // detach = 1 when phase far from 0.5, 0 at peak
+    const dist = Math.abs(phase - 0.5) * 2; // 0..1
+    const detach = Math.pow(dist, 1.6);
     detachRef.current = detach;
 
-    // Whole-cube subtle scale pulse
-    const s = 1 + pulse * 0.06;
+    // Subtle whole-cluster breathing scale
+    const s = 1 + pulse * 0.05;
     groupRef.current.scale.setScalar(s);
   });
 
   return (
     <group ref={groupRef}>
-      {cubies.map((p, i) => (
-        <Cubie key={i} basePos={p} index={i} pulseRef={pulseRef} detachRef={detachRef} />
+      {MODULES.map((m, i) => (
+        <ModuleCube key={i} def={m} index={i} pulseRef={pulseRef} detachRef={detachRef} />
       ))}
     </group>
   );
@@ -171,10 +193,10 @@ const Particles = () => {
   const ref = useRef<THREE.Points>(null);
   const geom = useMemo(() => {
     const g = new THREE.BufferGeometry();
-    const count = 220;
+    const count = 280;
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
-      const r = 3.5 + Math.random() * 3;
+      const r = 4 + Math.random() * 4;
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
@@ -186,16 +208,19 @@ const Particles = () => {
   }, []);
 
   useFrame((_, d) => {
-    if (ref.current) ref.current.rotation.y += d * 0.04;
+    if (ref.current) {
+      ref.current.rotation.y += d * 0.03;
+      ref.current.rotation.x += d * 0.01;
+    }
   });
 
   return (
     <points ref={ref} geometry={geom}>
       <pointsMaterial
-        size={0.04}
+        size={0.035}
         color={NEON.blue}
         transparent
-        opacity={0.7}
+        opacity={0.6}
         sizeAttenuation
         depthWrite={false}
       />
@@ -247,6 +272,23 @@ const MouseSync = ({ mouseRef }: { mouseRef: React.MutableRefObject<{ x: number;
   return null;
 };
 
+/* ---------- Ambient pulsing rim light ---------- */
+const PulseLight = ({ pulseRef }: { pulseRef: React.MutableRefObject<number> }) => {
+  const a = useRef<THREE.PointLight>(null);
+  const b = useRef<THREE.PointLight>(null);
+  useFrame(() => {
+    const p = pulseRef.current;
+    if (a.current) a.current.intensity = 1.4 + p * 2.4;
+    if (b.current) b.current.intensity = 1.2 + p * 2.0;
+  });
+  return (
+    <>
+      <pointLight ref={a} position={[-6, -2, -4]} color={NEON.magenta} distance={22} />
+      <pointLight ref={b} position={[6, -3, 3]} color={NEON.blue} distance={22} />
+    </>
+  );
+};
+
 /* ---------- Main ---------- */
 const RubiksCube = ({ onPulse }: { onPulse?: (p: number) => void }) => {
   const pulseRef = useRef(0);
@@ -256,24 +298,40 @@ const RubiksCube = ({ onPulse }: { onPulse?: (p: number) => void }) => {
 
   return (
     <Canvas
-      camera={{ position: [4.8, 3.6, 5.8], fov: 38 }}
+      camera={{ position: [5.2, 3.4, 6.4], fov: 36 }}
       dpr={[1, 2]}
+      shadows
       gl={{ antialias: true, alpha: true }}
       onCreated={({ gl }) => gl.setClearColor(0x000000, 0)}
       frameloop="always"
     >
-      <ambientLight intensity={0.35} />
-      <directionalLight position={[6, 8, 5]} intensity={1.1} color={NEON.white} />
-      <pointLight position={[-6, -2, -4]} intensity={1.6} color={NEON.magenta} distance={20} />
-      <pointLight position={[6, -3, 3]} intensity={1.4} color={NEON.blue} distance={20} />
-      <pointLight position={[0, 6, -3]} intensity={0.9} color={NEON.gold} distance={18} />
-      <pointLight position={[-3, 4, 4]} intensity={0.8} color={NEON.purple} distance={18} />
+      <ambientLight intensity={0.28} />
+      <directionalLight
+        position={[6, 9, 5]}
+        intensity={1.2}
+        color={NEON.white}
+        castShadow
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
+      />
+      <pointLight position={[0, 6, -3]} intensity={0.9} color={NEON.gold} distance={20} />
+      <pointLight position={[-3, 4, 4]} intensity={0.7} color={NEON.purple} distance={20} />
+      <PulseLight pulseRef={pulseRef} />
 
       <Environment preset="city" />
 
-      <Float speed={1.1} rotationIntensity={0.25} floatIntensity={0.55}>
+      <Float speed={0.9} rotationIntensity={0.18} floatIntensity={0.6}>
         <CubeAssembly pulseRef={pulseRef} detachRef={detachRef} mouseRef={mouseRef} />
       </Float>
+
+      <ContactShadows
+        position={[0, -2.4, 0]}
+        opacity={0.45}
+        scale={12}
+        blur={3}
+        far={6}
+        color={NEON.purple}
+      />
 
       <Particles />
 
