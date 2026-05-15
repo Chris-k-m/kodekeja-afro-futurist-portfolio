@@ -25,12 +25,12 @@ type ModuleDef = {
 };
 
 const MODULES: ModuleDef[] = [
-  { basePos: [-STEP, STEP / 2, 0], color: NEON.blue, accent: NEON.white },
-  { basePos: [0, STEP / 2, 0], color: NEON.teal, accent: NEON.white },
-  { basePos: [STEP, STEP / 2, 0], color: NEON.gold, accent: NEON.white },
-  { basePos: [-STEP, -STEP / 2, 0], color: NEON.magenta, accent: NEON.white },
-  { basePos: [0, -STEP / 2, 0], color: NEON.purple, accent: NEON.white },
-  { basePos: [STEP, -STEP / 2, 0], color: NEON.white, accent: NEON.blue },
+  { basePos: [-STEP, STEP / 2, 0], color: "#3a3d42", accent: "#9aa0a8" },
+  { basePos: [0, STEP / 2, 0], color: "#2c2e33", accent: "#b8bcc2" },
+  { basePos: [STEP, STEP / 2, 0], color: "#4a4e55", accent: "#8a8f96" },
+  { basePos: [-STEP, -STEP / 2, 0], color: "#26282d", accent: "#7a7f86" },
+  { basePos: [0, -STEP / 2, 0], color: "#3f4248", accent: "#c0c4ca" },
+  { basePos: [STEP, -STEP / 2, 0], color: "#1f2125", accent: "#9aa0a8" },
 ];
 
 /* ---------- Single Module Cube ---------- */
