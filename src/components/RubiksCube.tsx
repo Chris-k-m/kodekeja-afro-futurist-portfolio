@@ -3,14 +3,14 @@ import { Environment, Float, ContactShadows } from "@react-three/drei";
 import { useRef, useMemo, useEffect } from "react";
 import * as THREE from "three";
 
-/* ---------- Palette (Afro-futuristic neon) ---------- */
+/* ---------- Palette (premium dark graphite) ---------- */
 const NEON = {
-  magenta: "#d946ef",
-  purple: "#a855f7",
-  blue: "#22d3ee",
-  teal: "#10b981",
-  gold: "#f5b43c",
-  white: "#f8fafc",
+  magenta: "#3a3a42",   // graphite warm
+  purple: "#2a2a30",    // deep charcoal
+  blue: "#5a6068",      // cool steel
+  teal: "#3d4248",      // gunmetal
+  gold: "#8a8f96",      // brushed silver accent
+  white: "#c9ccd1",     // soft platinum
 };
 
 /* 6 modules arranged as a 2x3 cluster — connect into a slab when assembled */
