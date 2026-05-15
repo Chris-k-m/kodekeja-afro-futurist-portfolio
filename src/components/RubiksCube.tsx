@@ -163,7 +163,7 @@ const CubeAssembly = ({
       Math.sin(t * 0.25) * 0.12 + targetX.current;
 
     // Pulse cycle ~3.6s, smooth bell shape
-    const cycle = 3.6;
+    const cycle = 5.5;
     const phase = (t % cycle) / cycle;
     const pulse = Math.exp(-Math.pow((phase - 0.5) * 4.2, 2));
     pulseRef.current = pulse;
