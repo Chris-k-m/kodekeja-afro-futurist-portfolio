@@ -3,14 +3,14 @@ import { Environment, Float, ContactShadows } from "@react-three/drei";
 import { useRef, useMemo, useEffect } from "react";
 import * as THREE from "three";
 
-/* ---------- Palette (Afro-futuristic neon) ---------- */
+/* ---------- Palette (premium dark graphite) ---------- */
 const NEON = {
-  magenta: "#d946ef",
-  purple: "#a855f7",
-  blue: "#22d3ee",
-  teal: "#10b981",
-  gold: "#f5b43c",
-  white: "#f8fafc",
+  magenta: "#3a3a42",   // graphite warm
+  purple: "#2a2a30",    // deep charcoal
+  blue: "#5a6068",      // cool steel
+  teal: "#3d4248",      // gunmetal
+  gold: "#8a8f96",      // brushed silver accent
+  white: "#c9ccd1",     // soft platinum
 };
 
 /* 6 modules arranged as a 2x3 cluster — connect into a slab when assembled */
@@ -25,12 +25,12 @@ type ModuleDef = {
 };
 
 const MODULES: ModuleDef[] = [
-  { basePos: [-STEP, STEP / 2, 0], color: NEON.blue, accent: NEON.white },
-  { basePos: [0, STEP / 2, 0], color: NEON.teal, accent: NEON.white },
-  { basePos: [STEP, STEP / 2, 0], color: NEON.gold, accent: NEON.white },
-  { basePos: [-STEP, -STEP / 2, 0], color: NEON.magenta, accent: NEON.white },
-  { basePos: [0, -STEP / 2, 0], color: NEON.purple, accent: NEON.white },
-  { basePos: [STEP, -STEP / 2, 0], color: NEON.white, accent: NEON.blue },
+  { basePos: [-STEP, STEP / 2, 0], color: "#3a3d42", accent: "#9aa0a8" },
+  { basePos: [0, STEP / 2, 0], color: "#2c2e33", accent: "#b8bcc2" },
+  { basePos: [STEP, STEP / 2, 0], color: "#4a4e55", accent: "#8a8f96" },
+  { basePos: [-STEP, -STEP / 2, 0], color: "#26282d", accent: "#7a7f86" },
+  { basePos: [0, -STEP / 2, 0], color: "#3f4248", accent: "#c0c4ca" },
+  { basePos: [STEP, -STEP / 2, 0], color: "#1f2125", accent: "#9aa0a8" },
 ];
 
 /* ---------- Single Module Cube ---------- */
@@ -58,14 +58,14 @@ const ModuleCube = ({
     out.normalize();
     return {
       phase: Math.random() * Math.PI * 2,
-      speed: 0.45 + Math.random() * 0.5,
+      speed: 0.18 + Math.random() * 0.22,
       drift: 0.55 + Math.random() * 0.55,
       spinAxis: new THREE.Vector3(
         Math.random() - 0.5,
         Math.random() - 0.5,
         Math.random() - 0.5,
       ).normalize(),
-      spinSpeed: 0.25 + Math.random() * 0.45,
+      spinSpeed: 0.08 + Math.random() * 0.14,
       outDir: out,
       bobAmp: 0.05 + Math.random() * 0.08,
     };
@@ -96,7 +96,7 @@ const ModuleCube = ({
     g.rotation.z = seed.spinAxis.z * spinAmt * 0.6;
 
     if (matRef.current) {
-      matRef.current.emissiveIntensity = 0.35 + pulse * 1.6;
+      matRef.current.emissiveIntensity = 0.08 + pulse * 0.45;
     }
     if (rimRef.current) {
       rimRef.current.opacity = 0.4 + pulse * 0.5 + ease * 0.2;
@@ -154,7 +154,7 @@ const CubeAssembly = ({
     const t = t0.current;
 
     // Continuous slow cinematic rotation
-    groupRef.current.rotation.y += delta * 0.28;
+    groupRef.current.rotation.y += delta * 0.09;
 
     // Mouse parallax
     targetX.current += (mouseRef.current.y * 0.3 - targetX.current) * 0.06;
@@ -163,7 +163,7 @@ const CubeAssembly = ({
       Math.sin(t * 0.25) * 0.12 + targetX.current;
 
     // Pulse cycle ~3.6s, smooth bell shape
-    const cycle = 3.6;
+    const cycle = 5.5;
     const phase = (t % cycle) / cycle;
     const pulse = Math.exp(-Math.pow((phase - 0.5) * 4.2, 2));
     pulseRef.current = pulse;
@@ -320,7 +320,7 @@ const RubiksCube = ({ onPulse }: { onPulse?: (p: number) => void }) => {
 
       <Environment preset="city" />
 
-      <Float speed={0.9} rotationIntensity={0.18} floatIntensity={0.6}>
+      <Float speed={0.5} rotationIntensity={0.1} floatIntensity={0.4}>
         <CubeAssembly pulseRef={pulseRef} detachRef={detachRef} mouseRef={mouseRef} />
       </Float>
 
