@@ -320,7 +320,7 @@ const RubiksCube = ({ onPulse }: { onPulse?: (p: number) => void }) => {
 
       <Environment preset="city" />
 
-      <Float speed={0.9} rotationIntensity={0.18} floatIntensity={0.6}>
+      <Float speed={0.5} rotationIntensity={0.1} floatIntensity={0.4}>
         <CubeAssembly pulseRef={pulseRef} detachRef={detachRef} mouseRef={mouseRef} />
       </Float>
 
