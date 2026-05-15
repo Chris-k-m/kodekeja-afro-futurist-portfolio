@@ -96,7 +96,7 @@ const ModuleCube = ({
     g.rotation.z = seed.spinAxis.z * spinAmt * 0.6;
 
     if (matRef.current) {
-      matRef.current.emissiveIntensity = 0.35 + pulse * 1.6;
+      matRef.current.emissiveIntensity = 0.08 + pulse * 0.45;
     }
     if (rimRef.current) {
       rimRef.current.opacity = 0.4 + pulse * 0.5 + ease * 0.2;
