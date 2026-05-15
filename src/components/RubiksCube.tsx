@@ -58,14 +58,14 @@ const ModuleCube = ({
     out.normalize();
     return {
       phase: Math.random() * Math.PI * 2,
-      speed: 0.45 + Math.random() * 0.5,
+      speed: 0.18 + Math.random() * 0.22,
       drift: 0.55 + Math.random() * 0.55,
       spinAxis: new THREE.Vector3(
         Math.random() - 0.5,
         Math.random() - 0.5,
         Math.random() - 0.5,
       ).normalize(),
-      spinSpeed: 0.25 + Math.random() * 0.45,
+      spinSpeed: 0.08 + Math.random() * 0.14,
       outDir: out,
       bobAmp: 0.05 + Math.random() * 0.08,
     };
