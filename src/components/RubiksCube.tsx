@@ -154,7 +154,7 @@ const CubeAssembly = ({
     const t = t0.current;
 
     // Continuous slow cinematic rotation
-    groupRef.current.rotation.y += delta * 0.28;
+    groupRef.current.rotation.y += delta * 0.09;
 
     // Mouse parallax
     targetX.current += (mouseRef.current.y * 0.3 - targetX.current) * 0.06;
