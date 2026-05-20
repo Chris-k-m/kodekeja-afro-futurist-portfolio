@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Github, Linkedin, Mail, Send, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, Send, Twitter } from "lucide-react";
 import { toast } from "sonner";
 import Reveal from "./Reveal";
 
@@ -31,7 +31,7 @@ const Contact = () => {
             </p>
 
             <a
-              href="mailto:hello@kodekeja.com"
+              href="mailto:kodekeja@gmail.com"
               className="mt-8 inline-flex items-center gap-3 rounded-2xl glass gradient-border px-5 py-4 hover:bg-muted/40 transition-colors group"
             >
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-primary text-primary-foreground">
@@ -39,7 +39,20 @@ const Contact = () => {
               </span>
               <span>
                 <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Email us</span>
-                <span className="block font-display font-semibold group-hover:text-primary transition-colors">hello@kodekeja.com</span>
+                <span className="block font-display font-semibold group-hover:text-primary transition-colors">kodekeja@gmail.com</span>
+              </span>
+            </a>
+
+            <a
+              href="tel:+254788834934"
+              className="mt-4 inline-flex items-center gap-3 rounded-2xl glass gradient-border px-5 py-4 hover:bg-muted/40 transition-colors group"
+            >
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-primary text-primary-foreground">
+                <Phone className="h-4 w-4" />
+              </span>
+              <span>
+                <span className="block text-[10px] font-mono uppercase tracking-widest text-muted-foreground">Call us</span>
+                <span className="block font-display font-semibold group-hover:text-primary transition-colors">+254 788 834 934</span>
               </span>
             </a>
 
