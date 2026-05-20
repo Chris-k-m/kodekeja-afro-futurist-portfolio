@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Github, Linkedin, Mail, Send, Twitter } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, Send, Twitter } from "lucide-react";
 import { toast } from "sonner";
 import Reveal from "./Reveal";
 
