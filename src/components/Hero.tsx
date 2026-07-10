@@ -4,12 +4,12 @@ import HeroBackground from "./HeroBackground";
 import RubiksCube from "./RubiksCube";
 
 const SOLUTIONS = [
-  { label: "Fintech", desc: "Payments, lending & wallets", color: "text-primary", glow: "hsl(198 100% 65% / 0.7)" },
-  { label: "HealthTech", desc: "Records, telehealth & ops", color: "text-secondary", glow: "hsl(152 75% 60% / 0.7)" },
-  { label: "AI Systems", desc: "Smart agents & ML pipelines", color: "text-accent", glow: "hsl(290 90% 70% / 0.7)" },
-  { label: "Automation", desc: "Workflow & ops engines", color: "text-primary", glow: "hsl(198 100% 65% / 0.7)" },
-  { label: "Smart Platforms", desc: "Adaptive digital products", color: "text-secondary", glow: "hsl(42 90% 65% / 0.7)" },
-  { label: "Web Infrastructure", desc: "Scalable cloud-native systems", color: "text-accent", glow: "hsl(290 90% 70% / 0.7)" },
+  { label: "Brand & Design", desc: "Identity, product & interfaces" },
+  { label: "Web Platforms", desc: "Sites & apps that feel effortless" },
+  { label: "Mobile Apps", desc: "Products people open every day" },
+  { label: "Fintech", desc: "Payments, lending & wallets" },
+  { label: "HealthTech", desc: "Records, telehealth & care ops" },
+  { label: "AI & Automation", desc: "Smart tools, quietly working" },
 ];
 
 const Hero = () => {
@@ -25,11 +25,11 @@ const Hero = () => {
 
       <div className="container relative">
         <div className="flex justify-center mb-10 animate-fade-in">
-          <div className="inline-flex items-center gap-2 rounded-full glass gradient-border px-4 py-2 text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground">
+          <div className="inline-flex items-center gap-2 rounded-full glass gradient-border px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-secondary">
             <Sparkles className="h-3.5 w-3.5 text-accent" />
-            <span>Engineered in Africa</span>
+            <span>Made in Africa</span>
             <span className="h-1 w-1 rounded-full bg-muted-foreground/60" />
-            <span className="text-secondary">Deployed Worldwide</span>
+            <span className="text-primary">Loved worldwide</span>
           </div>
         </div>
 
@@ -38,29 +38,21 @@ const Hero = () => {
           <div className="animate-fade-in-up">
             <div className="inline-flex items-center gap-2 mb-5">
               <span className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-primary">
-                Who We Are
+              <span className="text-[11px] uppercase tracking-[0.3em] text-primary font-medium">
+                A studio, not a factory
               </span>
             </div>
 
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
-              <span className="text-gradient-primary">KodeKeja</span>{" "}
-              <span className="text-foreground/90">crafts the systems</span>
+            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.02] tracking-tight">
+              We build <span className="text-gradient-primary italic">soulful</span> software,
               <br />
-              <span className="text-foreground/60 text-2xl sm:text-3xl">
-                powering tomorrow's Africa.
-              </span>
-            </h2>
+              <span className="text-foreground/80">rooted in African craft.</span>
+            </h1>
 
-            <p className="mt-6 text-base sm:text-lg text-foreground/80 leading-relaxed">
-              A technology company building{" "}
-              <span className="text-foreground font-semibold">scalable</span>,{" "}
-              <span className="text-foreground font-semibold">intelligent</span>{" "}
-              digital solutions across{" "}
-              <span className="text-primary font-semibold">fintech</span>,{" "}
-              <span className="text-secondary font-semibold">healthtech</span>,{" "}
-              <span className="text-accent font-semibold">AI systems</span>, and modern{" "}
-              <span className="text-primary font-semibold">web platforms</span>.
+            <p className="mt-7 text-lg text-foreground/80 leading-relaxed max-w-xl">
+              KodeKeja is a small, senior team of designers and engineers helping
+              founders, clinicians and communities turn caring ideas into products
+              that quietly change lives.
             </p>
 
             <div className="mt-8 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
@@ -68,28 +60,28 @@ const Hero = () => {
             <div className="mt-7 flex flex-col sm:flex-row gap-3">
               <a
                 href="#projects"
-                className="group inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-primary px-6 py-3.5 text-sm font-medium text-primary-foreground glow-primary hover:scale-[1.03] transition-transform duration-300"
+                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-primary px-7 py-4 text-sm font-medium text-primary-foreground shadow-gold hover:scale-[1.03] transition-transform duration-300"
               >
-                View Projects
+                See our work
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
               <a
                 href="#contact"
-                className="group inline-flex items-center justify-center gap-2 rounded-lg glass gradient-border px-6 py-3.5 text-sm font-medium text-foreground hover:bg-muted/40 transition-colors"
+                className="group inline-flex items-center justify-center gap-2 rounded-full glass gradient-border px-7 py-4 text-sm font-medium text-foreground hover:bg-muted/40 transition-colors"
               >
-                Get In Touch
+                Say hello
                 <ArrowRight className="h-4 w-4 opacity-60 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
 
             <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4">
               {[
-                { k: "10+", v: "Systems shipped" },
+                { k: "10+", v: "Products shipped" },
                 { k: "4", v: "Industries served" },
-                { k: "100%", v: "Built to scale" },
+                { k: "100%", v: "Made with care" },
               ].map((s) => (
-                <div key={s.v} className="glass rounded-xl p-3 sm:p-4 gradient-border">
-                  <div className="font-display text-xl sm:text-2xl font-bold text-gradient-primary">
+                <div key={s.v} className="glass rounded-2xl p-3 sm:p-4 gradient-border">
+                  <div className="font-display text-2xl sm:text-3xl text-gradient-primary">
                     {s.k}
                   </div>
                   <div className="mt-1 text-[11px] sm:text-xs text-muted-foreground">
@@ -100,16 +92,14 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* RIGHT — 3D Rubik's cube with pulsing solutions */}
+          {/* RIGHT — 3D cube with pulsing solutions */}
           <div className="animate-fade-in-up [animation-delay:200ms] relative">
             <div className="relative aspect-square w-full max-w-[560px] mx-auto">
-              {/* Glow backdrop */}
-              <div className="absolute inset-8 rounded-full bg-primary/20 blur-3xl pointer-events-none" aria-hidden />
-              <div className="absolute inset-12 rounded-full bg-secondary/15 blur-3xl pointer-events-none" aria-hidden />
+              <div className="absolute inset-8 rounded-full bg-accent/25 blur-3xl pointer-events-none" aria-hidden />
+              <div className="absolute inset-12 rounded-full bg-primary/20 blur-3xl pointer-events-none" aria-hidden />
 
-              {/* Orbit ring */}
               <svg
-                className="absolute inset-0 w-full h-full opacity-30 pointer-events-none animate-[spin_40s_linear_infinite]"
+                className="absolute inset-0 w-full h-full opacity-40 pointer-events-none animate-[spin_40s_linear_infinite]"
                 viewBox="0 0 200 200"
                 aria-hidden
               >
@@ -125,17 +115,16 @@ const Hero = () => {
                 />
               </div>
 
-              {/* Solution overlay — synced to pulse */}
               <div
                 key={solutionIdx}
                 className="absolute left-1/2 -translate-x-1/2 bottom-2 sm:bottom-4 text-center pointer-events-none animate-fade-in"
               >
-                <div className="font-mono text-[10px] uppercase tracking-[0.4em] text-muted-foreground mb-1">
-                  // solution.{String(solutionIdx + 1).padStart(2, "0")}
+                <div className="text-[10px] uppercase tracking-[0.4em] text-muted-foreground mb-1">
+                  what we do — {String(solutionIdx + 1).padStart(2, "0")}
                 </div>
                 <div
-                  className={`font-display text-2xl sm:text-3xl font-bold ${solution.color}`}
-                  style={{ textShadow: `0 0 24px ${solution.glow}` }}
+                  className="font-display text-3xl sm:text-4xl text-gradient-primary"
+                  style={{ textShadow: `0 0 30px hsl(var(--accent) / 0.4)` }}
                 >
                   {solution.label}
                 </div>
@@ -149,7 +138,7 @@ const Hero = () => {
       </div>
 
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-muted-foreground">
-        <span className="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
+        <span className="text-[10px] uppercase tracking-widest">Scroll</span>
         <span className="block h-10 w-px bg-gradient-to-b from-primary/60 to-transparent animate-pulse" />
       </div>
     </section>
