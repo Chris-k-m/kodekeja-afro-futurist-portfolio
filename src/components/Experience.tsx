@@ -23,12 +23,12 @@ const Experience = () => (
     <div className="absolute inset-0 pattern-african opacity-30 -z-10" />
     <div className="container max-w-6xl">
       <Reveal className="text-center max-w-2xl mx-auto">
-        <p className="font-mono text-xs uppercase tracking-widest text-primary">// Experience</p>
-        <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight">
-          Built in the <span className="text-gradient-primary">trenches.</span>
+        <p className="text-[11px] uppercase tracking-[0.3em] text-secondary font-medium">Experience</p>
+        <h2 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
+          Shaped in the <span className="text-gradient-primary italic">real world.</span>
         </h2>
         <p className="mt-5 text-muted-foreground">
-          Real production environments, real users, real systems.
+          Years spent inside production systems used by real people — that's where our craft was tempered.
         </p>
       </Reveal>
 

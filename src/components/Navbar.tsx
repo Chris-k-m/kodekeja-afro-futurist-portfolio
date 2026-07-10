@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#projects", label: "Projects" },
-  { href: "#features", label: "Capabilities" },
+  { href: "#about", label: "Studio" },
+  { href: "#projects", label: "Work" },
+  { href: "#features", label: "Services" },
   { href: "#experience", label: "Experience" },
-  { href: "#stack", label: "Stack" },
+  { href: "#stack", label: "Tools" },
   { href: "#contact", label: "Contact" },
 ];
 
@@ -98,10 +98,10 @@ const Navbar = () => {
               <span className="absolute inset-0 rounded-[10px] ring-1 ring-primary/30 group-hover:ring-accent/70 transition" />
               <span className="absolute -inset-1 rounded-[12px] bg-primary/20 blur-md opacity-0 group-hover:opacity-100 transition" />
             </span>
-            <span className="font-display font-semibold tracking-tight text-lg leading-none">
-              Kode<span className="text-gradient-primary">Keja</span>
-              <span className="block font-mono text-[8px] uppercase tracking-[0.35em] text-muted-foreground mt-1">
-                ⏣ nairobi.engine
+            <span className="font-display font-semibold tracking-tight text-xl leading-none">
+              Kode<span className="text-gradient-primary italic">Keja</span>
+              <span className="block text-[9px] uppercase tracking-[0.35em] text-muted-foreground mt-1">
+                Nairobi · Studio
               </span>
             </span>
           </a>

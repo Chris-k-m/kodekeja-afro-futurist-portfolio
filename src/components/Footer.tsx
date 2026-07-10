@@ -67,8 +67,8 @@ const Footer = () => (
           <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gradient-primary text-primary-foreground font-display font-bold">K</span>
           <span className="font-display font-semibold">Kode<span className="text-gradient-primary">Keja</span></span>
         </div>
-        <p className="text-xs font-mono text-muted-foreground">
-          © {new Date().getFullYear()} KodeKeja. Smart systems, built to last.
+        <p className="text-xs text-muted-foreground">
+          © {new Date().getFullYear()} KodeKeja. Made with care in Nairobi.
         </p>
         <div className="flex gap-5 text-xs text-muted-foreground">
           <a href="#about" className="hover:text-foreground transition-colors">About</a>

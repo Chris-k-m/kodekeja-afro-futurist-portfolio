@@ -14,11 +14,11 @@ const TechStack = () => (
   <section id="stack" className="relative py-28 sm:py-32 scroll-mt-24">
     <div className="container">
       <Reveal className="text-center max-w-2xl mx-auto">
-        <p className="font-mono text-xs uppercase tracking-widest text-primary">// Tech stack</p>
-        <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight">
-          Battle-tested <span className="text-gradient-primary">tooling.</span>
+        <p className="text-[11px] uppercase tracking-[0.3em] text-secondary font-medium">The toolkit</p>
+        <h2 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
+          Tools we <span className="text-gradient-primary italic">trust.</span>
         </h2>
-        <p className="mt-5 text-muted-foreground">The technologies we reach for to build reliable, maintainable systems.</p>
+        <p className="mt-5 text-muted-foreground">The technologies we reach for — chosen for reliability, longevity and joy to work with.</p>
       </Reveal>
 
       <Reveal delay={150} className="mt-14">

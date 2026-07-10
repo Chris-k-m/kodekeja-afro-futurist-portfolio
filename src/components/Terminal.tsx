@@ -1,158 +1,87 @@
-import { useEffect, useRef, useState } from "react";
+import { Compass, HandHeart, Leaf, Sparkles } from "lucide-react";
 import Reveal from "./Reveal";
+import AfricanDivider from "./AfricanDivider";
 
-type Line = {
-  prompt?: string;
-  command?: string;
-  output?: string;
-  outputClass?: string;
-};
-
-const lines: Line[] = [
-  { prompt: "kodekeja@system:~$", command: "whoami" },
-  { output: "We are a technology company building scalable, real-world systems.", outputClass: "text-foreground/85" },
-  { prompt: "kodekeja@system:~$", command: "capabilities" },
-  { output: "Full-stack development | API integrations | System architecture | UI/UX", outputClass: "text-secondary" },
-  { prompt: "kodekeja@system:~$", command: "tech_stack" },
-  { output: "ASP.NET | React | MongoDB | MySQL | Python", outputClass: "text-accent" },
-  { prompt: "kodekeja@system:~$", command: "mission" },
-  { output: "Engineer reliable systems. Solve real problems. Ship at scale.", outputClass: "text-foreground/85" },
-  { prompt: "kodekeja@system:~$", command: "currently_building" },
-  { output: "SMC Trading Bot — Smart Money Concepts algorithmic trading engine.", outputClass: "text-accent" },
+const values = [
+  {
+    icon: HandHeart,
+    title: "People before pixels",
+    body: "We start with the humans on the other side of the screen — their frustrations, their hopes, their everyday reality.",
+  },
+  {
+    icon: Compass,
+    title: "Rooted, not stuck",
+    body: "Rooted in African craft and story. Not stuck in one aesthetic — we pull from tradition and the future in equal measure.",
+  },
+  {
+    icon: Sparkles,
+    title: "Craft you can feel",
+    body: "The polish is in the details you don't notice — the soft transition, the honest copy, the button that never fails.",
+  },
+  {
+    icon: Leaf,
+    title: "Built to last",
+    body: "Software that ages gracefully. Systems that grow with you instead of collapsing under their own weight.",
+  },
 ];
 
-// Flatten into typed segments for sequential typing
-type Segment = { text: string; className: string; newlineAfter?: boolean };
+const About = () => (
+  <section id="about" className="relative py-28 sm:py-36 scroll-mt-24 overflow-hidden">
+    <div className="absolute inset-0 pattern-african opacity-50 -z-10" />
+    <div className="absolute -top-40 -right-20 h-96 w-96 rounded-full bg-accent/20 blur-[120px] -z-10" aria-hidden />
+    <div className="absolute -bottom-40 -left-20 h-96 w-96 rounded-full bg-secondary/15 blur-[120px] -z-10" aria-hidden />
 
-const buildSegments = (): Segment[] => {
-  const segs: Segment[] = [];
-  lines.forEach((l) => {
-    if (l.prompt) {
-      segs.push({ text: l.prompt + " ", className: "text-secondary" });
-      segs.push({ text: (l.command ?? "") + "\n", className: "text-primary" });
-    } else if (l.output) {
-      segs.push({ text: "> " + l.output + "\n\n", className: l.outputClass ?? "text-foreground/85" });
-    }
-  });
-  return segs;
-};
-
-const SEGMENTS = buildSegments();
-const TOTAL_CHARS = SEGMENTS.reduce((n, s) => n + s.text.length, 0);
-const SPEED_MS = 18;
-
-const Terminal = () => {
-  const [count, setCount] = useState(0);
-  const [done, setDone] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const startedRef = useRef(false);
-
-  // Start typing on first scroll-into-view
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting && !startedRef.current) {
-            startedRef.current = true;
-            const id = setInterval(() => {
-              setCount((c) => {
-                if (c >= TOTAL_CHARS) {
-                  clearInterval(id);
-                  setDone(true);
-                  return c;
-                }
-                return c + 1;
-              });
-            }, SPEED_MS);
-          }
-        });
-      },
-      { threshold: 0.25 },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
-  const skip = () => {
-    setCount(TOTAL_CHARS);
-    setDone(true);
-  };
-
-  // Build rendered output up to `count` characters
-  let remaining = count;
-  const rendered: JSX.Element[] = [];
-  SEGMENTS.forEach((seg, i) => {
-    if (remaining <= 0) return;
-    const slice = seg.text.slice(0, remaining);
-    remaining -= slice.length;
-    rendered.push(
-      <span key={i} className={seg.className}>
-        {slice}
-      </span>,
-    );
-  });
-
-  return (
-    <section id="about" className="relative py-28 sm:py-36 scroll-mt-24">
-      <div className="absolute inset-0 pattern-african opacity-40 -z-10" />
-      <div className="container max-w-5xl">
-        <Reveal className="text-center max-w-3xl mx-auto">
-          <p className="font-mono text-xs uppercase tracking-widest text-primary">// About KodeKeja</p>
-          <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight">
-            Boot up the <span className="text-gradient-primary">system.</span>
+    <div className="container">
+      <div className="grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-20 items-start">
+        <Reveal>
+          <p className="text-[11px] uppercase tracking-[0.3em] text-secondary font-medium">Our story</p>
+          <h2 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
+            A studio where <span className="text-gradient-primary italic">craft</span> and <span className="text-gradient-primary italic">code</span> share the same room.
           </h2>
-          <p className="mt-5 text-muted-foreground leading-relaxed">
-            A peek at who we are — straight from the command line.
+          <p className="mt-6 text-lg text-foreground/80 leading-relaxed">
+            KodeKeja is a design and engineering studio based in Nairobi, working with founders, non-profits and clinicians who care deeply about the people they serve.
           </p>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            We believe great software feels like a good conversation — warm, clear, unhurried. So we build with the same values that shape our part of the world: patience, community, and a stubborn love for things done properly.
+          </p>
+
+          <AfricanDivider className="my-10" />
+
+          <div className="grid grid-cols-3 gap-4">
+            {[
+              { k: "10+", v: "Products shipped" },
+              { k: "4", v: "Industries served" },
+              { k: "100%", v: "Made with care" },
+            ].map((s) => (
+              <div key={s.v} className="rounded-2xl bg-background/70 border border-border p-4">
+                <div className="font-display text-3xl text-gradient-primary">{s.k}</div>
+                <div className="mt-1 text-xs text-muted-foreground">{s.v}</div>
+              </div>
+            ))}
+          </div>
         </Reveal>
 
-        <Reveal delay={120} className="mt-12">
-          <div
-            ref={containerRef}
-            onClick={() => !done && skip()}
-            className="group relative rounded-2xl glass gradient-border overflow-hidden shadow-elevate cursor-text select-text"
-            role="region"
-            aria-label="Terminal"
-          >
-            {/* Window chrome */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-border/60 bg-background/40">
-              <span className="h-3 w-3 rounded-full bg-destructive/80" />
-              <span className="h-3 w-3 rounded-full bg-accent" />
-              <span className="h-3 w-3 rounded-full bg-secondary" />
-              <span className="ml-3 font-mono text-xs text-muted-foreground">
-                kodekeja — zsh — 80×24
-              </span>
-              {!done && (
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    skip();
-                  }}
-                  className="ml-auto font-mono text-[11px] uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
-                >
-                  skip ▸
-                </button>
-              )}
-            </div>
-
-            {/* Terminal body */}
-            <pre className="m-0 p-6 sm:p-8 font-mono text-sm sm:text-[15px] leading-relaxed whitespace-pre-wrap break-words min-h-[320px] sm:min-h-[360px] bg-[hsl(222_47%_3%)]/60">
-              {rendered}
-              <span
-                className={`inline-block w-2 h-4 align-[-2px] ml-0.5 bg-primary ${
-                  done ? "animate-pulse" : ""
+        <Reveal delay={150}>
+          <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
+            {values.map((v, i) => (
+              <div
+                key={v.title}
+                className={`group relative rounded-3xl glass gradient-border p-6 sm:p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-elevate ${
+                  i % 2 === 1 ? "sm:mt-10" : ""
                 }`}
-                style={{ animation: done ? undefined : "pulse-glow 1s steps(2) infinite" }}
-              />
-            </pre>
+              >
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-primary text-primary-foreground shadow-gold">
+                  <v.icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 font-display text-2xl leading-tight">{v.title}</h3>
+                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{v.body}</p>
+              </div>
+            ))}
           </div>
         </Reveal>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
-export default Terminal;
+export default About;

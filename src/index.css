@@ -2,77 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-/* KodeKeja — Afro-futuristic design system. All colors HSL. */
+/* KodeKeja — Warm African Modern. All colors HSL. */
 
 @layer base {
   :root {
-    /* Deep space backdrop */
-    --background: 222 47% 5%;
-    --foreground: 180 15% 92%;
+    /* Warm cream backdrop */
+    --background: 36 40% 96%;
+    --foreground: 15 45% 10%;
 
-    --card: 222 40% 8%;
-    --card-foreground: 180 15% 92%;
+    --card: 36 45% 98%;
+    --card-foreground: 15 45% 10%;
 
-    --popover: 222 40% 8%;
-    --popover-foreground: 180 15% 92%;
+    --popover: 36 45% 98%;
+    --popover-foreground: 15 45% 10%;
 
-    /* Electric blue */
-    --primary: 198 100% 55%;
-    --primary-foreground: 222 47% 5%;
-    --primary-glow: 198 100% 65%;
+    /* Rust — signature warm */
+    --primary: 20 63% 37%;              /* #9b4423 */
+    --primary-foreground: 36 45% 98%;
+    --primary-glow: 28 66% 50%;         /* #d4842a */
 
-    /* Emerald */
-    --secondary: 152 75% 45%;
-    --secondary-foreground: 222 47% 5%;
+    /* Deep burgundy */
+    --secondary: 8 58% 23%;             /* #5c2018 */
+    --secondary-foreground: 36 45% 98%;
 
-    --muted: 222 30% 12%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 32 24% 90%;
+    --muted-foreground: 18 18% 32%;
 
-    /* Soft gold */
-    --accent: 42 90% 60%;
-    --accent-foreground: 222 47% 5%;
+    /* Warm gold */
+    --accent: 42 78% 60%;                /* #e8b84a */
+    --accent-foreground: 15 45% 10%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 36 45% 98%;
 
-    --border: 198 30% 18%;
-    --input: 222 30% 14%;
-    --ring: 198 100% 55%;
+    --border: 28 25% 82%;
+    --input: 28 25% 88%;
+    --ring: 20 63% 37%;
 
-    --radius: 0.875rem;
+    --radius: 1rem;
 
     /* Brand gradients */
-    --gradient-hero: radial-gradient(ellipse at top, hsl(198 100% 55% / 0.15), transparent 60%),
-                     radial-gradient(ellipse at bottom right, hsl(152 75% 45% / 0.12), transparent 55%),
-                     linear-gradient(180deg, hsl(222 47% 5%), hsl(222 47% 4%));
-    --gradient-primary: linear-gradient(135deg, hsl(198 100% 55%), hsl(152 75% 45%));
-    --gradient-gold: linear-gradient(135deg, hsl(42 90% 60%), hsl(38 95% 50%));
-    --gradient-text: linear-gradient(135deg, hsl(180 15% 98%) 0%, hsl(198 100% 75%) 50%, hsl(152 75% 60%) 100%);
-    --gradient-border: linear-gradient(135deg, hsl(198 100% 55% / 0.5), hsl(152 75% 45% / 0.3), hsl(42 90% 60% / 0.4));
+    --gradient-hero: radial-gradient(ellipse at top left, hsl(28 66% 60% / 0.28), transparent 55%),
+                     radial-gradient(ellipse at bottom right, hsl(8 58% 30% / 0.22), transparent 55%),
+                     linear-gradient(180deg, hsl(36 40% 96%), hsl(34 35% 93%));
+    --gradient-primary: linear-gradient(135deg, hsl(8 58% 28%), hsl(20 63% 42%), hsl(28 66% 55%), hsl(42 78% 60%));
+    --gradient-gold: linear-gradient(135deg, hsl(42 78% 60%), hsl(28 66% 50%));
+    --gradient-text: linear-gradient(135deg, hsl(8 58% 25%) 0%, hsl(20 63% 40%) 45%, hsl(42 78% 55%) 100%);
+    --gradient-border: linear-gradient(135deg, hsl(20 63% 45% / 0.6), hsl(42 78% 60% / 0.45), hsl(8 58% 30% / 0.5));
+    --gradient-warm-sun: radial-gradient(circle at center, hsl(42 78% 65%), hsl(28 66% 50%) 40%, hsl(8 58% 25%) 90%);
 
     /* Shadows / glows */
-    --shadow-glow: 0 0 40px hsl(198 100% 55% / 0.35);
-    --shadow-emerald: 0 0 40px hsl(152 75% 45% / 0.3);
-    --shadow-gold: 0 0 30px hsl(42 90% 60% / 0.25);
-    --shadow-elevate: 0 20px 60px -20px hsl(222 80% 2% / 0.8);
-    --shadow-card: 0 8px 32px -8px hsl(222 80% 2% / 0.6), inset 0 1px 0 0 hsl(198 60% 70% / 0.06);
+    --shadow-glow: 0 0 40px hsl(28 66% 50% / 0.35);
+    --shadow-emerald: 0 0 40px hsl(8 58% 30% / 0.3);
+    --shadow-gold: 0 0 30px hsl(42 78% 60% / 0.35);
+    --shadow-elevate: 0 24px 60px -24px hsl(15 45% 15% / 0.28);
+    --shadow-card: 0 10px 30px -10px hsl(15 45% 15% / 0.18), inset 0 1px 0 0 hsl(36 45% 100% / 0.6);
 
-    /* Glass */
-    --glass-bg: hsl(222 40% 10% / 0.5);
-    --glass-border: hsl(198 60% 60% / 0.12);
+    /* Glass — warm translucent */
+    --glass-bg: hsl(36 50% 99% / 0.6);
+    --glass-border: hsl(20 60% 35% / 0.14);
 
     /* Easing */
     --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
     --transition-smooth: all 0.5s var(--ease-smooth);
 
-    --sidebar-background: 222 47% 5%;
-    --sidebar-foreground: 180 15% 92%;
-    --sidebar-primary: 198 100% 55%;
-    --sidebar-primary-foreground: 222 47% 5%;
-    --sidebar-accent: 222 30% 12%;
-    --sidebar-accent-foreground: 180 15% 92%;
-    --sidebar-border: 198 30% 18%;
-    --sidebar-ring: 198 100% 55%;
+    --sidebar-background: 36 40% 96%;
+    --sidebar-foreground: 15 45% 10%;
+    --sidebar-primary: 20 63% 37%;
+    --sidebar-primary-foreground: 36 45% 98%;
+    --sidebar-accent: 32 24% 90%;
+    --sidebar-accent-foreground: 15 45% 10%;
+    --sidebar-border: 28 25% 82%;
+    --sidebar-ring: 20 63% 37%;
   }
 }
 
@@ -93,7 +94,7 @@
   }
 
   ::selection {
-    background: hsl(var(--primary) / 0.3);
+    background: hsl(var(--primary) / 0.25);
     color: hsl(var(--foreground));
   }
 }
@@ -101,8 +102,8 @@
 @layer components {
   .glass {
     background: var(--glass-bg);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
     border: 1px solid var(--glass-border);
   }
 
@@ -121,21 +122,29 @@
     -webkit-text-fill-color: transparent;
   }
 
-  /* Subtle African geometric pattern (Adinkra/Kente inspired) */
+  /* Adinkra / Kente inspired pattern — subtle warm */
   .pattern-african {
     background-image:
-      linear-gradient(135deg, hsl(var(--primary) / 0.04) 25%, transparent 25%),
-      linear-gradient(225deg, hsl(var(--secondary) / 0.04) 25%, transparent 25%),
-      linear-gradient(45deg, hsl(var(--accent) / 0.03) 25%, transparent 25%),
-      linear-gradient(315deg, hsl(var(--primary) / 0.04) 25%, transparent 25%);
-    background-size: 40px 40px;
-    background-position: 20px 0, 20px 0, 0 0, 0 0;
+      linear-gradient(135deg, hsl(var(--primary) / 0.06) 25%, transparent 25%),
+      linear-gradient(225deg, hsl(var(--secondary) / 0.06) 25%, transparent 25%),
+      linear-gradient(45deg, hsl(var(--accent) / 0.05) 25%, transparent 25%),
+      linear-gradient(315deg, hsl(var(--primary) / 0.05) 25%, transparent 25%);
+    background-size: 48px 48px;
+    background-position: 24px 0, 24px 0, 0 0, 0 0;
+  }
+
+  .pattern-mud-cloth {
+    background-image:
+      radial-gradient(circle at 20% 20%, hsl(var(--secondary) / 0.12) 1.5px, transparent 2px),
+      radial-gradient(circle at 80% 80%, hsl(var(--primary) / 0.1) 1.5px, transparent 2px),
+      linear-gradient(45deg, transparent 46%, hsl(var(--accent) / 0.08) 47%, hsl(var(--accent) / 0.08) 53%, transparent 54%);
+    background-size: 40px 40px, 40px 40px, 24px 24px;
   }
 
   .pattern-grid {
     background-image:
-      linear-gradient(hsl(var(--primary) / 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--primary) / 0.06) 1px, transparent 1px);
+      linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
     background-size: 56px 56px;
   }
 
@@ -186,8 +195,8 @@
   50% { transform: translateY(-12px); }
 }
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
-  50% { box-shadow: 0 0 40px hsl(var(--primary) / 0.6); }
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--primary) / 0.25); }
+  50% { box-shadow: 0 0 40px hsl(var(--primary) / 0.5); }
 }
 @keyframes grid-flow {
   0% { background-position: 0 0; }

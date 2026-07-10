@@ -21,13 +21,12 @@ const Contact = () => {
       <div className="container">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
           <Reveal>
-            <p className="font-mono text-xs uppercase tracking-widest text-secondary">// Contact</p>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl font-bold tracking-tight">
-              Let's build something <span className="text-gradient-primary">that lasts.</span>
+            <p className="text-[11px] uppercase tracking-[0.3em] text-secondary font-medium">Say hello</p>
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight">
+              Let's build something <span className="text-gradient-primary italic">meaningful.</span>
             </h2>
             <p className="mt-5 text-muted-foreground leading-relaxed max-w-md">
-              Whether it's a new product, a system rebuild, or a critical integration —
-              tell us what you're working on.
+              A new product, a rebuild, a stubborn integration — or just a conversation about what's possible. We'd love to hear from you.
             </p>
 
             <a
