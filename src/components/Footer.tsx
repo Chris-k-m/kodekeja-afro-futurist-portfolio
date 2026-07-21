@@ -1,6 +1,7 @@
 import { QRCodeSVG } from "qrcode.react";
 import { Mail, ScanLine } from "lucide-react";
 import AfricanDivider from "./AfricanDivider";
+import logo from "@/assets/kodekeja-logo.png.asset.json";
 
 const MAILTO =
   "mailto:kodekeja@gmail.com?subject=Hello%20KodeKeja&body=Hi%20team%2C%0A%0A";
@@ -64,7 +65,7 @@ const Footer = () => (
 
       <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-2">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gradient-primary text-primary-foreground font-display font-bold">K</span>
+          <img src={logo.url} alt="KodeKeja logo" className="h-8 w-8 rounded-md object-contain" />
           <span className="font-display font-semibold">Kode<span className="text-gradient-primary">Keja</span></span>
         </div>
         <p className="text-xs text-muted-foreground">

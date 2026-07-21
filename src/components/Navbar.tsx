@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "@/assets/kodekeja-logo.png.asset.json";
 
 const links = [
   { href: "#about", label: "Studio" },
@@ -34,68 +35,8 @@ const Navbar = () => {
           }`}
         >
           <a href="#top" className="flex items-center gap-2.5 group">
-            <span className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-[hsl(var(--background))] overflow-hidden">
-              {/* mechatronic frame */}
-              <span className="absolute inset-0 rounded-[10px] bg-gradient-primary opacity-90" />
-              <span className="absolute inset-[2px] rounded-[8px] bg-[hsl(var(--background))]" />
-
-              {/* circuit traces */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 40 40" fill="none" aria-hidden>
-                {/* corner bolts */}
-                <circle cx="5" cy="5" r="0.9" fill="hsl(var(--accent))" />
-                <circle cx="35" cy="5" r="0.9" fill="hsl(var(--accent))" />
-                <circle cx="5" cy="35" r="0.9" fill="hsl(var(--accent))" />
-                <circle cx="35" cy="35" r="0.9" fill="hsl(var(--accent))" />
-                {/* circuit lines */}
-                <path d="M2 20 H6 M34 20 H38 M20 2 V6 M20 34 V38" stroke="hsl(var(--primary))" strokeWidth="0.6" />
-                <path d="M2 12 H5 V8 M38 12 H35 V8 M2 28 H5 V32 M38 28 H35 V32" stroke="hsl(var(--secondary))" strokeWidth="0.5" fill="none" />
-                {/* tribal accent marks top/bottom */}
-                <path d="M16 6 L20 4 L24 6 M16 34 L20 36 L24 34" stroke="hsl(var(--accent))" strokeWidth="0.4" />
-
-                {/* LEFT K — mechanical */}
-                <g stroke="url(#kgrad)" strokeWidth="2" strokeLinecap="square" fill="none">
-                  <path d="M11 11 V29" />
-                  <path d="M11 20 L17 11" />
-                  <path d="M11 20 L17 29" />
-                </g>
-                {/* RIGHT K — mirrored */}
-                <g stroke="url(#kgrad2)" strokeWidth="2" strokeLinecap="square" fill="none">
-                  <path d="M29 11 V29" />
-                  <path d="M29 20 L23 11" />
-                  <path d="M29 20 L23 29" />
-                </g>
-
-                {/* central afro diamond — shared joint */}
-                <path d="M20 15 L22 20 L20 25 L18 20 Z" stroke="hsl(var(--accent))" strokeWidth="0.5" fill="hsl(var(--accent) / 0.15)" />
-                <circle cx="20" cy="20" r="0.7" fill="hsl(var(--accent))" />
-
-                {/* joint nodes */}
-                <circle cx="11" cy="20" r="1.2" fill="hsl(var(--accent))" />
-                <circle cx="29" cy="20" r="1.2" fill="hsl(var(--accent))" />
-                <circle cx="11" cy="11" r="0.8" fill="hsl(var(--secondary))" />
-                <circle cx="11" cy="29" r="0.8" fill="hsl(var(--secondary))" />
-                <circle cx="29" cy="11" r="0.8" fill="hsl(var(--primary))" />
-                <circle cx="29" cy="29" r="0.8" fill="hsl(var(--primary))" />
-                <circle cx="17" cy="11" r="0.6" fill="hsl(var(--primary))" />
-                <circle cx="17" cy="29" r="0.6" fill="hsl(var(--primary))" />
-                <circle cx="23" cy="11" r="0.6" fill="hsl(var(--secondary))" />
-                <circle cx="23" cy="29" r="0.6" fill="hsl(var(--secondary))" />
-
-                <defs>
-                  <linearGradient id="kgrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stopColor="hsl(var(--primary))" />
-                    <stop offset="55%" stopColor="hsl(var(--accent))" />
-                    <stop offset="100%" stopColor="hsl(var(--secondary))" />
-                  </linearGradient>
-                  <linearGradient id="kgrad2" x1="1" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="hsl(var(--secondary))" />
-                    <stop offset="55%" stopColor="hsl(var(--accent))" />
-                    <stop offset="100%" stopColor="hsl(var(--primary))" />
-                  </linearGradient>
-                </defs>
-              </svg>
-
-              <span className="absolute inset-0 rounded-[10px] ring-1 ring-primary/30 group-hover:ring-accent/70 transition" />
+            <span className="relative inline-flex h-10 w-10 items-center justify-center rounded-[10px] overflow-hidden ring-1 ring-primary/30 group-hover:ring-accent/70 transition">
+              <img src={logo.url} alt="KodeKeja logo" className="h-full w-full object-contain" />
               <span className="absolute -inset-1 rounded-[12px] bg-primary/20 blur-md opacity-0 group-hover:opacity-100 transition" />
             </span>
             <span className="font-display font-semibold tracking-tight text-xl leading-none">
