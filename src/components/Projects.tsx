@@ -21,10 +21,13 @@ const projects = [
     icon: Wine,
     accent: "from-primary/25 to-accent/25",
     images: [
-      { src: sip1, alt: "SipSmart tracking dashboard" },
-      { src: sip2, alt: "SipSmart hydration reminders UI" },
-      { src: sip3, alt: "SipSmart analytics screen" },
+      { src: sip1.url, alt: "SipSmart home — track your drinks" },
+      { src: sip2.url, alt: "SipSmart hydration tracker" },
+      { src: sip3.url, alt: "SipSmart safe ride options" },
+      { src: sip4.url, alt: "SipSmart Buddy Mode groups" },
+      { src: sip5.url, alt: "SipSmart VibeMap venue discovery" },
     ],
+    fit: "contain" as const,
   },
   {
     name: "HESS",
