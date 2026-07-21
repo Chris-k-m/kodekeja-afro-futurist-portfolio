@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from "react";
 type Props = {
   images: { src: string; alt: string }[];
   intervalMs?: number;
+  fit?: "cover" | "contain";
 };
 
-const ProjectCarousel = ({ images, intervalMs = 4000 }: Props) => {
+const ProjectCarousel = ({ images, intervalMs = 4000, fit = "cover" }: Props) => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
