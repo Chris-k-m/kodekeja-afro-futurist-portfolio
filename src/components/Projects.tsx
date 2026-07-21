@@ -2,9 +2,11 @@ import { ArrowUpRight, Sparkles, Sprout, Wine } from "lucide-react";
 import Reveal from "./Reveal";
 import ProjectCarousel from "./ProjectCarousel";
 
-import sip1 from "@/assets/projects/sip-1.jpg";
-import sip2 from "@/assets/projects/sip-2.jpg";
-import sip3 from "@/assets/projects/sip-3.jpg";
+import sip1 from "@/assets/projects/sipsmart-home.jpg.asset.json";
+import sip2 from "@/assets/projects/sipsmart-hydration.jpg.asset.json";
+import sip3 from "@/assets/projects/sipsmart-rides.jpg.asset.json";
+import sip4 from "@/assets/projects/sipsmart-buddy.jpg.asset.json";
+import sip5 from "@/assets/projects/sipsmart-vibemap.jpg.asset.json";
 import hess1 from "@/assets/projects/hess-1.jpg";
 import hess2 from "@/assets/projects/hess-2.jpg";
 import hess3 from "@/assets/projects/hess-3.jpg";
