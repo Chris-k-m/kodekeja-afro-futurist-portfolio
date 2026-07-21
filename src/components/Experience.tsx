@@ -1,4 +1,4 @@
-import { Briefcase, Building2, Calendar, Cpu } from "lucide-react";
+import { Briefcase, Building2, Calendar, Cpu, Home, Scissors, TrendingUp } from "lucide-react";
 import Reveal from "./Reveal";
 
 const topSkills = [
