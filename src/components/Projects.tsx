@@ -2,9 +2,11 @@ import { ArrowUpRight, Sparkles, Sprout, Wine } from "lucide-react";
 import Reveal from "./Reveal";
 import ProjectCarousel from "./ProjectCarousel";
 
-import sip1 from "@/assets/projects/sip-1.jpg";
-import sip2 from "@/assets/projects/sip-2.jpg";
-import sip3 from "@/assets/projects/sip-3.jpg";
+import sip1 from "@/assets/projects/sipsmart-home.jpg.asset.json";
+import sip2 from "@/assets/projects/sipsmart-hydration.jpg.asset.json";
+import sip3 from "@/assets/projects/sipsmart-rides.jpg.asset.json";
+import sip4 from "@/assets/projects/sipsmart-buddy.jpg.asset.json";
+import sip5 from "@/assets/projects/sipsmart-vibemap.jpg.asset.json";
 import hess1 from "@/assets/projects/hess-1.jpg";
 import hess2 from "@/assets/projects/hess-2.jpg";
 import hess3 from "@/assets/projects/hess-3.jpg";
@@ -19,10 +21,13 @@ const projects = [
     icon: Wine,
     accent: "from-primary/25 to-accent/25",
     images: [
-      { src: sip1, alt: "SipSmart tracking dashboard" },
-      { src: sip2, alt: "SipSmart hydration reminders UI" },
-      { src: sip3, alt: "SipSmart analytics screen" },
+      { src: sip1.url, alt: "SipSmart home — track your drinks" },
+      { src: sip2.url, alt: "SipSmart hydration tracker" },
+      { src: sip3.url, alt: "SipSmart safe ride options" },
+      { src: sip4.url, alt: "SipSmart Buddy Mode groups" },
+      { src: sip5.url, alt: "SipSmart VibeMap venue discovery" },
     ],
+    fit: "contain" as const,
   },
   {
     name: "HESS",
@@ -37,6 +42,7 @@ const projects = [
       { src: hess2, alt: "HESS education programs page" },
       { src: hess3, alt: "HESS impact section" },
     ],
+    fit: "cover" as const,
   },
 ];
 
@@ -71,7 +77,7 @@ const Projects = () => (
               <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-40 pointer-events-none`} aria-hidden />
 
               <div className="relative p-4 sm:p-5 pb-0">
-                <ProjectCarousel images={p.images} intervalMs={4200 + i * 500} />
+                <ProjectCarousel images={p.images} fit={p.fit} intervalMs={4200 + i * 500} />
               </div>
 
               <div className="relative p-6 sm:p-8 flex flex-col flex-1">

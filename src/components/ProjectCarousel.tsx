@@ -4,9 +4,10 @@ import { useEffect, useRef, useState } from "react";
 type Props = {
   images: { src: string; alt: string }[];
   intervalMs?: number;
+  fit?: "cover" | "contain";
 };
 
-const ProjectCarousel = ({ images, intervalMs = 4000 }: Props) => {
+const ProjectCarousel = ({ images, intervalMs = 4000, fit = "cover" }: Props) => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
@@ -47,7 +48,7 @@ const ProjectCarousel = ({ images, intervalMs = 4000 }: Props) => {
           width={1280}
           height={800}
           loading="lazy"
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+          className={`absolute inset-0 h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} transition-opacity duration-700 ${
             i === index ? "opacity-100" : "opacity-0"
           }`}
         />
