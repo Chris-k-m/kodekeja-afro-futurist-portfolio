@@ -48,7 +48,7 @@ const ProjectCarousel = ({ images, intervalMs = 4000, fit = "cover" }: Props) =>
           width={1280}
           height={800}
           loading="lazy"
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+          className={`absolute inset-0 h-full w-full ${fit === "contain" ? "object-contain" : "object-cover"} transition-opacity duration-700 ${
             i === index ? "opacity-100" : "opacity-0"
           }`}
         />
