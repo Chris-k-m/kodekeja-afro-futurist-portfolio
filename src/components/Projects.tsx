@@ -42,6 +42,7 @@ const projects = [
       { src: hess2, alt: "HESS education programs page" },
       { src: hess3, alt: "HESS impact section" },
     ],
+    fit: "cover" as const,
   },
 ];
 
