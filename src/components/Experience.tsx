@@ -118,9 +118,10 @@ const Experience = () => (
 
       {/* Currently building */}
       <Reveal delay={200} className="mt-10">
-        <div className="relative rounded-2xl glass gradient-border p-6 sm:p-8 overflow-hidden">
+        <div className="relative rounded-3xl glass gradient-border p-6 sm:p-8 overflow-hidden">
           <div className="absolute inset-0 pattern-grid opacity-30 pointer-events-none" />
-          <div className="relative flex flex-col sm:flex-row sm:items-center gap-5">
+
+          <div className="relative flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
             <div className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-accent w-fit">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 animate-ping" />
@@ -128,18 +129,68 @@ const Experience = () => (
               </span>
               Currently building
             </div>
-            <div className="flex-1">
-              <h4 className="font-display text-xl sm:text-2xl font-semibold">
-                <span className="text-gradient-primary">SMC Trading Bot</span>
-              </h4>
-              <p className="mt-1 text-sm text-muted-foreground">
-                A Smart Money Concepts–driven algorithmic trading system — automated
-                market structure analysis, liquidity sweeps, and order block execution.
-              </p>
-            </div>
-            <div className="hidden sm:flex font-mono text-[11px] text-muted-foreground">
-              <Calendar className="h-3.5 w-3.5 mr-1.5 text-primary" /> in progress
-            </div>
+            <p className="text-sm text-muted-foreground">
+              Three products in active development — each one built to solve a real problem we see around us.
+            </p>
+          </div>
+
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                name: "Tailor Made",
+                icon: Scissors,
+                description:
+                  "A premium mobile-first marketplace connecting clients with Africa's finest fashion creators for bespoke, made-to-measure clothing.",
+                tags: ["Marketplace", "Fashion", "Mobile-first"],
+              },
+              {
+                name: "RentFlow",
+                icon: Home,
+                description:
+                  "A calm, all-in-one rental management dashboard that helps landlords and property managers get paid on time without the endless chasing.",
+                tags: ["PropTech", "Payments", "Dashboard"],
+              },
+              {
+                name: "SMC Trading Bot",
+                icon: TrendingUp,
+                description:
+                  "A Smart Money Concepts–driven algorithmic trading system — automated market structure analysis, liquidity sweeps, and order block execution.",
+                tags: ["FinTech", "Automation", "Algorithms"],
+              },
+            ].map((p) => (
+              <div
+                key={p.name}
+                className="group relative rounded-2xl border border-border bg-background/40 p-5 hover:border-primary/60 hover:bg-primary/[0.03] transition-all duration-500"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-primary text-primary-foreground shadow-gold">
+                    <p.icon className="h-4 w-4" />
+                  </div>
+                  <div className="hidden sm:flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
+                    <Calendar className="h-3 w-3 text-primary" />
+                    in progress
+                  </div>
+                </div>
+
+                <h4 className="mt-4 font-display text-xl font-semibold tracking-tight">
+                  <span className="text-gradient-primary">{p.name}</span>
+                </h4>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {p.description}
+                </p>
+
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <li
+                      key={t}
+                      className="rounded-full border border-border bg-background/60 px-2.5 py-1 text-[10px] uppercase tracking-wider text-foreground/70"
+                    >
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </Reveal>
