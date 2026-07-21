@@ -77,7 +77,7 @@ const Projects = () => (
               <div className={`absolute inset-0 bg-gradient-to-br ${p.accent} opacity-40 pointer-events-none`} aria-hidden />
 
               <div className="relative p-4 sm:p-5 pb-0">
-                <ProjectCarousel images={p.images} intervalMs={4200 + i * 500} />
+                <ProjectCarousel images={p.images} fit={p.fit} intervalMs={4200 + i * 500} />
               </div>
 
               <div className="relative p-6 sm:p-8 flex flex-col flex-1">
